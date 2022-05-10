@@ -16,19 +16,19 @@ function loadComponent(scope, module) {
 }
 
 const componentCache = new Map();
-export const useFederatedComponent = (remoteUrl, scope, module) => {
+export const useFederatedComponent = (remoteUrl, scope, module, React) => {
   const key = `${remoteUrl}-${scope}-${module}`;
-  const [Component, setComponent] = useState(null);
+  const [Component, setComponent] = React.useState(null);
 
   const { ready, errorLoading } = useDynamicScript(remoteUrl);
-  useEffect(() => {
+  React.useEffect(() => {
     if (Component) setComponent(null);
     // Only recalculate when key changes
   }, [key]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (ready && !Component) {
-      const Comp = lazy(loadComponent(scope, module));
+      const Comp = React.lazy(loadComponent(scope, module));
       componentCache.set(key, Comp);
       setComponent(Comp);
     }
