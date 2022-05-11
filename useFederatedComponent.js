@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 
 import useDynamicScript from './useDynamicScript';
 
@@ -20,7 +19,7 @@ export const useFederatedComponent = (remoteUrl, scope, module, React) => {
   const key = `${remoteUrl}-${scope}-${module}`;
   const [Component, setComponent] = React.useState(null);
 
-  const { ready, errorLoading } = useDynamicScript(remoteUrl);
+  const { ready, errorLoading } = useDynamicScript(remoteUrl,React);
   React.useEffect(() => {
     if (Component) setComponent(null);
     // Only recalculate when key changes

@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
-
 const urlCache = new Set();
-const useDynamicScript = url => {
-  const [ready, setReady] = useState(false);
-  const [errorLoading, setErrorLoading] = useState(false);
+const useDynamicScript = (url,React) => {
+  const [ready, setReady] = React.useState(false);
+  const [errorLoading, setErrorLoading] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!url) return;
 
     if (urlCache.has(url)) {
